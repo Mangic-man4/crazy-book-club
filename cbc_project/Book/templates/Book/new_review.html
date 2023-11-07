@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a New Review</title>
+</head>
+<body>
+    <h1>Add a New Review for {{ book.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Review</button>
+    </form>
+</body>
+</html>
+
+

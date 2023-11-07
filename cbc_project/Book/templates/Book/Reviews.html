@@ -1,0 +1,16 @@
+{% extends 'Book/base.html' %}
+
+{% block content %}
+
+    <p>Reviews</p>
+    <ul>
+        {% for review in reviews %}
+            <li> 
+                {{ review.text }}
+                <a href="{% url 'crazy_books_clubs:edit_review' review_id=review.id %}">Edit</a>
+            </li>
+        {% empty %}
+            <li>No reviews have been added yet.</li>
+        {% endfor %}
+    </ul>    
+{% endblock content %}

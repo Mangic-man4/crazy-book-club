@@ -1,0 +1,22 @@
+{% extends 'Book/base.html' %}
+
+{% block content %}
+
+    <p>Books</p>
+
+    <ul>
+        <li><a href="{% url 'crazy_books_clubs:new_book' %}">Add a New Book</a></li>  
+        <br>
+        {% for book in books %}
+            <li> 
+                <a href="{% url 'crazy_books_clubs:book_detail' book.id %}">{{ book.name }}</a>
+                <p>Authors: {{ book.authors }}</p>
+                <p>Year Published: {{ book.year_published }}</p>
+            </li>
+        {% empty %}
+            <li>No books available.</li>
+        {% endfor %}
+        <br>
+        <li><a href="https://en.wikipedia.org/wiki/Book"> Book examples</a></li>
+    </ul>
+{% endblock content %}

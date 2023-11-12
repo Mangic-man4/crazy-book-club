@@ -13,6 +13,7 @@
                 <p>{{ review.my_review|linebreaks }}</p>
                 <p>Stars: {{ review.stars }}</p>
                 <p>Unfinished: {{ review.unfinished }}</p>
+                <a href="{% url 'crazy_books_clubs:edit_review' review.id %}" class="btn btn-primary">Edit Review</a>
               </li>
             {% empty %}
               <li>There are no reviews for this book yet.</li>

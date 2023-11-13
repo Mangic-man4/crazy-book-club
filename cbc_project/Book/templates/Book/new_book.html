@@ -1,5 +1,20 @@
-<!DOCTYPE html>
-<html>
+{% extends 'Book/base.html' %}
+
+{% block content %}
+
+    <title>Add a New Book</title>
+    <h1>Add a New Book</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Book</button>
+    </form>
+    <a href="{% url 'crazy_books_clubs:Books' %}">Back to Books</a>
+{% endblock content %}
+
+<!--
+    <html>
 <head>
     <title>Add a New Book</title>
 </head>
@@ -8,7 +23,8 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Book</button>
     </form>
 </body>
 </html>
+-->
+

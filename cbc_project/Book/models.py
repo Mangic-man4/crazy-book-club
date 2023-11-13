@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here
@@ -10,6 +11,8 @@ class Book(models.Model):
     name = models.CharField(max_length=255)
     authors = models.JSONField(default=list)  # JSONField for a list of names
     year_published = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
     # Date fields for tracking when the book was added and modified
     date_added = models.DateTimeField(auto_now_add=True)
@@ -30,7 +33,7 @@ class Review(models.Model):
     unfinished = models.BooleanField()
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
-    book = models.ForeignKey('Book', on_delete=models.CASCADE)  # ForeignKey to the Book model
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)  # ForeignKey to the Book model
 
     def __str__(self):
         """

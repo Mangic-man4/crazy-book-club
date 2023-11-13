@@ -1,0 +1,11 @@
+{% extends 'Book/base.html' %}
+
+{% block content %}
+<form action = "{% url 'accounts:register' %}" method='POST'>
+    {% csrf_token %}
+    {{ form.as_div }}
+      <button name="submit">Register</button>
+      <input type="hidden" name="next" value="{% url 'crazy_books_clubs:index' %}">
+</form>
+
+{% endblock content %}

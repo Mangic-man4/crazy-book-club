@@ -2,11 +2,13 @@
 
 {% block content %}
 
+    <title>Edit review</title>
+
     <h2>Edit Review for {{ review.book.name }}</h2>
     <form method="post">
-        <button type="submit">Update Review</button>
         {% csrf_token %}
         {{ form.as_p }}
+        <button type="submit">Update Review</button>
     </form>
     <a href="{% url 'crazy_books_clubs:book_detail' book_id=review.book.id %}">Back to Book</a>
 {% endblock content %}

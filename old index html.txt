@@ -1,0 +1,5 @@
+{% extends 'Book/base.html' %}
+
+{% block content %}
+<p>Crazy Book Club allows users to review books they like.</p>
+{% endblock %}

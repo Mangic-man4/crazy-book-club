@@ -1,24 +1,33 @@
 {% extends 'Book/base.html' %}
 
+{% block page_header %}
+  <h1>{{ topic.text }}</h1>
+{% endblock page_header %}
+
 {% block content %}
 
-    <p>Book: {{ book.name }}</p>
+  <p>
+    <a href="{% url 'crazy_books_clubs:new_review' book.id %}">Add a Review</a>
+  </p>
 
-    <p>Reviews:</p>
-
-        <ul>
-            {% for review in reviews %}
-              <li>
-                <p>{{ review.date_added|date:'d M, Y H:i' }}</p>
-                <p>{{ review.my_review|linebreaks }}</p>
-                <p>Stars: {{ review.stars }}</p>
-                <p>Unfinished: {{ review.unfinished }}</p>
-                <a href="{% url 'crazy_books_clubs:edit_review' review.id %}" class="btn btn-primary">Edit Review</a>
-              </li>
-            {% empty %}
-              <li>There are no reviews for this book yet.</li>
-            {% endfor %}
-            <a href="{% url 'crazy_books_clubs:new_review' book.id %}" class="btn btn-primary">Add a Review</a>
-        </ul>
+  {% for review in reviews %}
+    <div class="card mb-3">
+      <!-- Card header with timestamp and edit link -->
+      <h4 class="card-header">
+        {{ review.date_added|date:'d M, Y H:i'|linebreaks }}
+        <small><a href="{% url 'crazy_books_clubs:edit_review' review.id %}">
+          Edit Review</a></small>
+      </h4>
+      <!-- Card body with entry text -->
+      <div class="card-body">{{ entry.text|linebreaks }}</div>
+      {{ review.my_review|linebreaks }}
+      <br>
+      Stars: {{ review.stars }}
+      <br>
+      Unfinished: {{ review.unfinished }}
+    </div>
+  {% empty %}
+    <p>There are no reviews for this book yet.</p>
+  {% endfor %}
 
 {% endblock content %}

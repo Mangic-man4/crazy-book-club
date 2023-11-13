@@ -1,22 +1,24 @@
 {% extends 'Book/base.html' %}
 
+{% block page_header %}
+  <h1>Books</h1>
+{% endblock page_header %}
+
 {% block content %}
 
-    <p>Books</p>
+  <ul class="list-group border-bottom pb-2 mb-4">
+    {% for book in books %}
+      <li class="list-group-item border-0">
+        <a href="{% url 'crazy_books_clubs:book_detail' book.id %}">
+          {{ book.name }}</a>
+          <p>Authors: {{ book.authors|join:", "|title }}</p>
+          <p>Year Published: {{ book.year_published }}</p>
+      </li>
+    {% empty %}
+      <li class="list-group-item border-0">No books available.</li>
+    {% endfor %}
+  </ul>
 
-    <ul>
-        <li><a href="{% url 'crazy_books_clubs:new_book' %}">Add a New Book</a></li>  
-        <br>
-        {% for book in books %}
-            <li> 
-                <a href="{% url 'crazy_books_clubs:book_detail' book.id %}">{{ book.name }}</a>
-                <p>Authors: {{ book.authors }}</p>
-                <p>Year Published: {{ book.year_published }}</p>
-            </li>
-        {% empty %}
-            <li>No books available.</li>
-        {% endfor %}
-        <br>
-        <li><a href="https://en.wikipedia.org/wiki/Book"> Book examples</a></li>
-    </ul>
+  <a href="{% url 'crazy_books_clubs:new_book' %}">Add a New Book</a>
+
 {% endblock content %}

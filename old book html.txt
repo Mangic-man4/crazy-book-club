@@ -1,0 +1,24 @@
+{% extends 'Book/base.html' %}
+
+{% block content %}
+
+    <p>Book: {{ book.name }}</p>
+
+    <p>Reviews:</p>
+
+        <ul>
+            {% for review in reviews %}
+              <li>
+                <p>{{ review.date_added|date:'d M, Y H:i' }}</p>
+                <p>{{ review.my_review|linebreaks }}</p>
+                <p>Stars: {{ review.stars }}</p>
+                <p>Unfinished: {{ review.unfinished }}</p>
+                <a href="{% url 'crazy_books_clubs:edit_review' review.id %}" class="btn btn-primary">Edit Review</a>
+              </li>
+            {% empty %}
+              <li>There are no reviews for this book yet.</li>
+            {% endfor %}
+            <a href="{% url 'crazy_books_clubs:new_review' book.id %}" class="btn btn-primary">Add a Review</a>
+        </ul>
+
+{% endblock content %}
